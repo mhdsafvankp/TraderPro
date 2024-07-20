@@ -22,38 +22,41 @@ class _HorizontalOptionsState extends State<HorizontalOptions> {
     return Wrap(
       crossAxisAlignment: WrapCrossAlignment.center,
       children: options.map((option) {
-        return GestureDetector(
-          onTap: () {
-            setState(() {
-              selectedOption = option;
-              RR type = RR.one;
-              if(option == "2"){
-                type = RR.two;
-              } else if(option == "3"){
-                type = RR.three;
-              } else if(option == "custom"){
-                type = RR.other;
-              }else if(option == "4"){
-                type = RR.four;
-              }else if(option == "6"){
-                type = RR.six;
-              }
-              widget.onTap(type);
-            });
-          },
-          child: Container(
-            padding: EdgeInsets.all(10),
-            margin: EdgeInsets.symmetric(horizontal: 5),
-            decoration: BoxDecoration(
-              color: selectedOption == option ? const Color(0xff0642a2) : Colors.grey,
-              borderRadius: BorderRadius.circular(10),
-            ),
-            child: Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 8 , vertical: 8),
-              child: Text(
-                option,
-                style: TextStyle(
-                  color: Colors.white,
+        return Padding(
+          padding: const EdgeInsets.symmetric(vertical: 8),
+          child: GestureDetector(
+            onTap: () {
+              setState(() {
+                selectedOption = option;
+                RR type = RR.one;
+                if(option == "2"){
+                  type = RR.two;
+                } else if(option == "3"){
+                  type = RR.three;
+                } else if(option == "custom"){
+                  type = RR.other;
+                }else if(option == "4"){
+                  type = RR.four;
+                }else if(option == "6"){
+                  type = RR.six;
+                }
+                widget.onTap(type);
+              });
+            },
+            child: Container(
+              padding: EdgeInsets.all(10),
+              margin: EdgeInsets.symmetric(horizontal: 5),
+              decoration: BoxDecoration(
+                color: selectedOption == option ? const Color(0xff0642a2) : Colors.grey,
+                borderRadius: BorderRadius.circular(10),
+              ),
+              child: Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 8),
+                child: Text(
+                  option,
+                  style: TextStyle(
+                    color: Colors.white,
+                  ),
                 ),
               ),
             ),
