@@ -49,7 +49,7 @@ class _HorizontalOptionsState extends State<HorizontalOptions> {
               borderRadius: BorderRadius.circular(10),
             ),
             child: Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 8),
+              padding: const EdgeInsets.symmetric(horizontal: 8 , vertical: 8),
               child: Text(
                 option,
                 style: TextStyle(

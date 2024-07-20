@@ -4,6 +4,7 @@ import 'package:trader_pro/widgets/horizontal_list.dart';
 
 import '../../presenter/on_trade_calculation_presenter.dart';
 import '../../utilities/contants.dart';
+import '../../widgets/button.dart';
 import '../../widgets/input_field.dart';
 import '../../widgets/responsive_widget.dart';
 import '../view_contracts/on_trade_calc_view_contract.dart';
@@ -286,29 +287,17 @@ class _OnTradeScreenState extends State<OnTradeScreen>
                                 ),
                                 Padding(
                                   padding: const EdgeInsets.only(left: 16),
-                                  child: ElevatedButton(
-                                    onPressed: () {
-                                      FocusManager.instance.primaryFocus?.unfocus();
-                                      entryController.clear();
-                                      customController.clear();
-                                      slPointsController.clear();
-                                      stopLossController.clear();
-                                      targetPriceController.clear();
-                                    },
-                                    style: ButtonStyle(
-                                        backgroundColor:
-                                        MaterialStateProperty.all<Color>(
-                                            const Color(0xff0642a2)),
-                                        shape: MaterialStateProperty.all(
-                                          RoundedRectangleBorder(
-                                            // Change your radius here
-                                            borderRadius: BorderRadius.circular(16),
-                                          ),
-                                        ),
-                                        elevation: MaterialStateProperty.all(10)),
-                                    child: const Text('Reset'),
-                                  ),
-                                )
+                                  child: MyButton(
+                                        onPressed: () {
+                                          FocusManager.instance.primaryFocus
+                                              ?.unfocus();
+                                          entryController.clear();
+                                          customController.clear();
+                                          slPointsController.clear();
+                                          stopLossController.clear();
+                                          targetPriceController.clear();
+                                        },
+                                        title: 'Reset'))
                               ],
                             ),
                           ),
@@ -370,32 +359,21 @@ class _OnTradeScreenState extends State<OnTradeScreen>
                           child: Row(
                             children: [
                               Expanded(
-                                child: ElevatedButton(
-                                  onPressed: () {
-                                    FocusManager.instance.primaryFocus?.unfocus();
-                                    if (_formKey.currentState!.validate()) {
-                                      presenter.calculate(
-                                          entryController.text,
-                                          slPointsController.text,
-                                          rrType,
-                                          customController.text);
-                                    } else {
-                                      presenter.error(fieldsMissingError);
-                                    }
-                                  },
-                                  child: Text('Calculate'),
-                                  style: ButtonStyle(
-                                      backgroundColor:
-                                      MaterialStateProperty.all<Color>(
-                                          const Color(0xff0642a2)),
-                                      shape: MaterialStateProperty.all(
-                                        RoundedRectangleBorder(
-                                          // Change your radius here
-                                          borderRadius: BorderRadius.circular(16),
-                                        ),
-                                      ),
-                                      elevation: MaterialStateProperty.all(10)),
-                                ),
+                                child: MyButton(
+                                    onPressed: () {
+                                      FocusManager.instance.primaryFocus
+                                          ?.unfocus();
+                                      if (_formKey.currentState!.validate()) {
+                                        presenter.calculate(
+                                            entryController.text,
+                                            slPointsController.text,
+                                            rrType,
+                                            customController.text);
+                                      } else {
+                                        presenter.error(fieldsMissingError);
+                                      }
+                                    },
+                                    title: 'Calculate'),
                               ),
                             ],
                           ),

@@ -31,6 +31,9 @@ class NumberTextField extends StatelessWidget {
         }
         return null; // Return null if the name is valid
       },
+      style: TextStyle(
+          color: Colors.black
+      ),
       readOnly: readOnly,
       enabled: !readOnly,
       onChanged: onChanged,

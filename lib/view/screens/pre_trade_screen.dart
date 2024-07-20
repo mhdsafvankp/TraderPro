@@ -3,6 +3,7 @@ import 'package:trader_pro/model/calculation_model.dart';
 
 import '../../presenter/pre_trade_calculation_presenter.dart';
 import '../../utilities/contants.dart';
+import '../../widgets/button.dart';
 import '../../widgets/input_field.dart';
 import '../../widgets/responsive_widget.dart';
 import '../view_contracts/pre_trade_calc_view_contract.dart';
@@ -354,28 +355,16 @@ class _MyHomePageState extends State<MyHomePage> implements PreTradeCalViewContr
                                 ),
                                 Padding(
                                   padding: const EdgeInsets.only(left: 16),
-                                  child: ElevatedButton(
-                                    onPressed: () {
-                                      FocusManager.instance.primaryFocus?.unfocus();
-                                      quantityController.clear();
-                                      riskController.clear();
-                                      slController.clear();
-                                      deltaController.clear();
-                                    },
-                                    style: ButtonStyle(
-                                        backgroundColor:
-                                        MaterialStateProperty.all<Color>(
-                                            const Color(0xff0642a2)),
-                                        shape: MaterialStateProperty.all(
-                                          RoundedRectangleBorder(
-                                            // Change your radius here
-                                            borderRadius: BorderRadius.circular(16),
-                                          ),
-                                        ),
-                                        elevation: MaterialStateProperty.all(10)),
-                                    child: const Text('Reset'),
-                                  ),
-                                )
+                                  child: MyButton(
+                                        onPressed: () {
+                                          FocusManager.instance.primaryFocus
+                                              ?.unfocus();
+                                          quantityController.clear();
+                                          riskController.clear();
+                                          slController.clear();
+                                          deltaController.clear();
+                                        },
+                                        title: 'Reset'))
                               ],
                             ),
                           ),
@@ -545,35 +534,24 @@ class _MyHomePageState extends State<MyHomePage> implements PreTradeCalViewContr
                         Row(
                           children: [
                             Expanded(
-                              child: ElevatedButton(
-                                onPressed: () {
-                                  FocusManager.instance.primaryFocus?.unfocus();
-                                  if (_formKey.currentState!.validate()) {
-                                    print('no error');
-                                    presenter.calculate(
-                                        quantityController.text,
-                                        riskController.text,
-                                        slController.text,
-                                        deltaController.text,
-                                        _selectedOption!,
-                                        _isToggled);
-                                  } else {
-                                    print('there is an error!!');
-                                  }
-                                },
-                                child: Text('Calculate'),
-                                style: ButtonStyle(
-                                    backgroundColor:
-                                    MaterialStateProperty.all<Color>(
-                                        const Color(0xff0642a2)),
-                                    shape: MaterialStateProperty.all(
-                                      RoundedRectangleBorder(
-                                        // Change your radius here
-                                        borderRadius: BorderRadius.circular(16),
-                                      ),
-                                    ),
-                                    elevation: MaterialStateProperty.all(10)),
-                              ),
+                              child: MyButton(
+                                  onPressed: () {
+                                    FocusManager.instance.primaryFocus
+                                        ?.unfocus();
+                                    if (_formKey.currentState!.validate()) {
+                                      print('no error');
+                                      presenter.calculate(
+                                          quantityController.text,
+                                          riskController.text,
+                                          slController.text,
+                                          deltaController.text,
+                                          _selectedOption!,
+                                          _isToggled);
+                                    } else {
+                                      print('there is an error!!');
+                                    }
+                                  },
+                                  title: 'Calculate'),
                             ),
                           ],
                         )
