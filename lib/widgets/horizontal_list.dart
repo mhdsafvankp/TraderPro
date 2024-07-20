@@ -45,13 +45,16 @@ class _HorizontalOptionsState extends State<HorizontalOptions> {
             padding: EdgeInsets.all(10),
             margin: EdgeInsets.symmetric(horizontal: 5),
             decoration: BoxDecoration(
-              color: selectedOption == option ? Colors.blue : Colors.grey,
+              color: selectedOption == option ? const Color(0xff0642a2) : Colors.grey,
               borderRadius: BorderRadius.circular(10),
             ),
-            child: Text(
-              option,
-              style: TextStyle(
-                color: Colors.white,
+            child: Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 8),
+              child: Text(
+                option,
+                style: TextStyle(
+                  color: Colors.white,
+                ),
               ),
             ),
           ),

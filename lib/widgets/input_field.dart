@@ -34,17 +34,20 @@ class NumberTextField extends StatelessWidget {
       readOnly: readOnly,
       enabled: !readOnly,
       onChanged: onChanged,
-      cursorColor: Colors.blue.shade200,
+      cursorColor: const Color(0xff0642a2),
       cursorWidth: 1,
       controller: controller,
       decoration: InputDecoration(
+        hintStyle: TextStyle(
+          color: Colors.black
+        ),
         labelText: labelString,
         border: OutlineInputBorder(
           borderRadius: BorderRadius.circular(8.0),
         ),
         focusedBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(8.0),
-          borderSide: BorderSide(color: Colors.blue.shade200, width: 1.0),
+          borderSide: BorderSide(color: const Color(0xff0642a2), width: 1.0),
         ),
         filled: !readOnly,
         fillColor: Colors.white,

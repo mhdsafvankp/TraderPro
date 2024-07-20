@@ -5,6 +5,7 @@ import 'package:trader_pro/widgets/horizontal_list.dart';
 import '../../presenter/on_trade_calculation_presenter.dart';
 import '../../utilities/contants.dart';
 import '../../widgets/input_field.dart';
+import '../../widgets/responsive_widget.dart';
 import '../view_contracts/on_trade_calc_view_contract.dart';
 
 class OnTradeScreen extends StatefulWidget {
@@ -41,194 +42,406 @@ class _OnTradeScreenState extends State<OnTradeScreen>
   @override
   Widget build(BuildContext context) {
     // return Center(child:  Text('${widget.title} screen coming soon'),);
-    return GestureDetector(
-      onTap: () {
-        FocusManager.instance.primaryFocus?.unfocus();
-      },
-      child: SingleChildScrollView(
-        child: Padding(
-          padding: const EdgeInsets.all(12.0),
-          child: Container(
-            decoration: BoxDecoration(
-                border: Border.all(
-                  color: Colors.blue.shade200,
-                ),
-                borderRadius: BorderRadius.circular(10),
-                color: Colors.grey.shade200),
-            child: Padding(
-              padding: const EdgeInsets.all(16.0),
-              child: Form(
-                key: _formKey,
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Padding(
-                      padding: const EdgeInsets.all(16.0),
-                      child: Align(
-                        alignment: Alignment.center,
-                        child: Wrap(
-                          crossAxisAlignment: WrapCrossAlignment.center,
-                          children: [
-                            Text(
-                              '${widget.title} $calculator',
-                              style: TextStyle(fontWeight: FontWeight.w600),
-                            ),
-                            Padding(
-                              padding: const EdgeInsets.only(left: 16),
-                              child: ElevatedButton(
-                                onPressed: () {
-                                  FocusManager.instance.primaryFocus?.unfocus();
-                                  entryController.clear();
-                                  customController.clear();
-                                  slPointsController.clear();
-                                  stopLossController.clear();
-                                  targetPriceController.clear();
-                                },
-                                style: ButtonStyle(
-                                    backgroundColor:
-                                    MaterialStateProperty.all<Color>(
-                                        Colors.blue),
-                                    shape: MaterialStateProperty.all(
-                                      RoundedRectangleBorder(
-                                        // Change your radius here
-                                        borderRadius: BorderRadius.circular(16),
-                                      ),
-                                    ),
-                                    elevation: MaterialStateProperty.all(10)),
-                                child: const Text('Reset'),
-                              ),
-                            )
-                          ],
-                        ),
+    return ResponsiveWidget(
+      large: GestureDetector(
+        onTap: () {
+          FocusManager.instance.primaryFocus?.unfocus();
+        },
+        child: Container(
+          decoration: BoxDecoration(
+            image: DecorationImage(
+                image: AssetImage("assets/bg.jpg"), fit: BoxFit.cover),
+          ),
+          child: Padding(
+            padding: EdgeInsets.symmetric(horizontal: (MediaQuery.of(context).size.width * 0.2)),
+            child: SingleChildScrollView(
+              child: Padding(
+                padding: const EdgeInsets.all(12.0),
+                child: Container(
+                  decoration: BoxDecoration(
+                      border: Border.all(
+                        color: const Color(0xff0642a2),
                       ),
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.symmetric(vertical: 16),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      borderRadius: BorderRadius.circular(10),
+                      color: Colors.grey.shade200),
+                  child: Padding(
+                    padding: const EdgeInsets.all(16.0),
+                    child: Form(
+                      key: _formKey,
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          Expanded(
-                            child: NumberTextField(
-                              labelString: enteredPrice,
-                              controller: entryController,
-                              onChanged: (value) {},
-                              readOnly: false,
-                              isDecimal: true,
-                              isZeroToOne: false,
-                            ),
-                          ),
-                          const SizedBox(
-                            width: 16,
-                          ),
-                          Expanded(
-                            child: NumberTextField(
-                              labelString: slPoints,
-                              controller: slPointsController,
-                              onChanged: (value) {},
-                              readOnly: false,
-                              isDecimal: true,
-                              isZeroToOne: false,
-                            ),
-                          )
-                        ],
-                      ),
-                    ),
-                    const Text(
-                      rr,
-                      style: TextStyle(fontWeight: FontWeight.w500),
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.all(16.0),
-                      child: HorizontalOptions(
-                        onTap: (rrType) {
-                          presenter.rrToggleSelection(rrType);
-                        },
-                      ),
-                    ),
-                    if (_enableCustom)
-                      NumberTextField(
-                        labelString: enteredReward,
-                        controller: customController,
-                        onChanged: (value) {},
-                        readOnly: false,
-                        isDecimal: true,
-                        isZeroToOne: false,
-                      ),
-                    Padding(
-                      padding: const EdgeInsets.all(16.0),
-                      child: Row(
-                        children: [
-                          Expanded(
-                            child: ElevatedButton(
-                              onPressed: () {
-                                FocusManager.instance.primaryFocus?.unfocus();
-                                if (_formKey.currentState!.validate()) {
-                                  presenter.calculate(
-                                      entryController.text,
-                                      slPointsController.text,
-                                      rrType,
-                                      customController.text);
-                                } else {
-                                  presenter.error(fieldsMissingError);
-                                }
-                              },
-                              child: Text('Calculate'),
-                              style: ButtonStyle(
-                                  backgroundColor:
-                                      MaterialStateProperty.all<Color>(
-                                          Colors.blue),
-                                  shape: MaterialStateProperty.all(
-                                    RoundedRectangleBorder(
-                                      // Change your radius here
-                                      borderRadius: BorderRadius.circular(16),
-                                    ),
+                          Padding(
+                            padding: const EdgeInsets.all(16.0),
+                            child: Align(
+                              alignment: Alignment.center,
+                              child: Wrap(
+                                crossAxisAlignment: WrapCrossAlignment.center,
+                                children: [
+                                  Text(
+                                    '${widget.title} $calculator',
+                                    style: TextStyle(fontWeight: FontWeight.w600),
                                   ),
-                                  elevation: MaterialStateProperty.all(10)),
+                                  Padding(
+                                    padding: const EdgeInsets.only(left: 16),
+                                    child: ElevatedButton(
+                                      onPressed: () {
+                                        FocusManager.instance.primaryFocus?.unfocus();
+                                        entryController.clear();
+                                        customController.clear();
+                                        slPointsController.clear();
+                                        stopLossController.clear();
+                                        targetPriceController.clear();
+                                      },
+                                      style: ButtonStyle(
+                                          backgroundColor:
+                                          MaterialStateProperty.all<Color>(
+                                              const Color(0xff0642a2)),
+                                          shape: MaterialStateProperty.all(
+                                            RoundedRectangleBorder(
+                                              // Change your radius here
+                                              borderRadius: BorderRadius.circular(16),
+                                            ),
+                                          ),
+                                          elevation: MaterialStateProperty.all(10)),
+                                      child: const Text('Reset'),
+                                    ),
+                                  )
+                                ],
+                              ),
                             ),
                           ),
-                        ],
-                      ),
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.symmetric(vertical: 16),
-                      child: Container(
-                        width: double.infinity,
-                        height: 1, // 1dp height
-                        color: Colors.blue.shade200, // Line color
-                      ),
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.symmetric(vertical: 16),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Expanded(
-                            child: NumberTextField(
-                              labelString: stopLoss,
-                              controller: stopLossController,
-                              onChanged: (value) {},
-                              readOnly: true,
-                              isDecimal: false,
-                              isZeroToOne: false,
+                          Padding(
+                            padding: const EdgeInsets.symmetric(vertical: 16),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Expanded(
+                                  child: NumberTextField(
+                                    labelString: enteredPrice,
+                                    controller: entryController,
+                                    onChanged: (value) {},
+                                    readOnly: false,
+                                    isDecimal: true,
+                                    isZeroToOne: false,
+                                  ),
+                                ),
+                                const SizedBox(
+                                  width: 16,
+                                ),
+                                Expanded(
+                                  child: NumberTextField(
+                                    labelString: slPoints,
+                                    controller: slPointsController,
+                                    onChanged: (value) {},
+                                    readOnly: false,
+                                    isDecimal: true,
+                                    isZeroToOne: false,
+                                  ),
+                                )
+                              ],
                             ),
                           ),
-                          const SizedBox(
-                            width: 16,
+                          const Text(
+                            rr,
+                            style: TextStyle(fontWeight: FontWeight.w500),
                           ),
-                          Expanded(
-                            child: NumberTextField(
-                              labelString: targetPrice,
-                              controller: targetPriceController,
+                          Padding(
+                            padding: const EdgeInsets.all(16.0),
+                            child: HorizontalOptions(
+                              onTap: (rrType) {
+                                presenter.rrToggleSelection(rrType);
+                              },
+                            ),
+                          ),
+                          if (_enableCustom)
+                            NumberTextField(
+                              labelString: enteredReward,
+                              controller: customController,
                               onChanged: (value) {},
-                              readOnly: true,
+                              readOnly: false,
                               isDecimal: true,
                               isZeroToOne: false,
+                            ),
+                          Padding(
+                            padding: const EdgeInsets.all(16.0),
+                            child: Row(
+                              children: [
+                                Expanded(
+                                  child: ElevatedButton(
+                                    onPressed: () {
+                                      FocusManager.instance.primaryFocus?.unfocus();
+                                      if (_formKey.currentState!.validate()) {
+                                        presenter.calculate(
+                                            entryController.text,
+                                            slPointsController.text,
+                                            rrType,
+                                            customController.text);
+                                      } else {
+                                        presenter.error(fieldsMissingError);
+                                      }
+                                    },
+                                    child: Text('Calculate'),
+                                    style: ButtonStyle(
+                                        backgroundColor:
+                                        MaterialStateProperty.all<Color>(
+                                            const Color(0xff0642a2)),
+                                        shape: MaterialStateProperty.all(
+                                          RoundedRectangleBorder(
+                                            // Change your radius here
+                                            borderRadius: BorderRadius.circular(16),
+                                          ),
+                                        ),
+                                        elevation: MaterialStateProperty.all(10)),
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.symmetric(vertical: 16),
+                            child: Container(
+                              width: double.infinity,
+                              height: 1, // 1dp height
+                              color: const Color(0xff0642a2), // Line color
+                            ),
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.symmetric(vertical: 16),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Expanded(
+                                  child: NumberTextField(
+                                    labelString: stopLoss,
+                                    controller: stopLossController,
+                                    onChanged: (value) {},
+                                    readOnly: true,
+                                    isDecimal: false,
+                                    isZeroToOne: false,
+                                  ),
+                                ),
+                                const SizedBox(
+                                  width: 16,
+                                ),
+                                Expanded(
+                                  child: NumberTextField(
+                                    labelString: targetPrice,
+                                    controller: targetPriceController,
+                                    onChanged: (value) {},
+                                    readOnly: true,
+                                    isDecimal: true,
+                                    isZeroToOne: false,
+                                  ),
+                                )
+                              ],
                             ),
                           )
                         ],
                       ),
-                    )
-                  ],
+                    ),
+                  ),
+                ),
+              ),
+            ),
+          ),
+        ),
+      ),
+      small: GestureDetector(
+        onTap: () {
+          FocusManager.instance.primaryFocus?.unfocus();
+        },
+        child: Container(
+          decoration: BoxDecoration(
+            image: DecorationImage(
+                image: AssetImage("assets/bg.jpg"), fit: BoxFit.cover),
+          ),
+          child: SingleChildScrollView(
+            child: Padding(
+              padding: const EdgeInsets.all(12.0),
+              child: Container(
+                decoration: BoxDecoration(
+                    border: Border.all(
+                      color: const Color(0xff0642a2),
+                    ),
+                    borderRadius: BorderRadius.circular(10),
+                    color: Colors.grey.shade200),
+                child: Padding(
+                  padding: const EdgeInsets.all(16.0),
+                  child: Form(
+                    key: _formKey,
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Padding(
+                          padding: const EdgeInsets.all(16.0),
+                          child: Align(
+                            alignment: Alignment.center,
+                            child: Wrap(
+                              crossAxisAlignment: WrapCrossAlignment.center,
+                              children: [
+                                Text(
+                                  '${widget.title} $calculator',
+                                  style: TextStyle(fontWeight: FontWeight.w600),
+                                ),
+                                Padding(
+                                  padding: const EdgeInsets.only(left: 16),
+                                  child: ElevatedButton(
+                                    onPressed: () {
+                                      FocusManager.instance.primaryFocus?.unfocus();
+                                      entryController.clear();
+                                      customController.clear();
+                                      slPointsController.clear();
+                                      stopLossController.clear();
+                                      targetPriceController.clear();
+                                    },
+                                    style: ButtonStyle(
+                                        backgroundColor:
+                                        MaterialStateProperty.all<Color>(
+                                            const Color(0xff0642a2)),
+                                        shape: MaterialStateProperty.all(
+                                          RoundedRectangleBorder(
+                                            // Change your radius here
+                                            borderRadius: BorderRadius.circular(16),
+                                          ),
+                                        ),
+                                        elevation: MaterialStateProperty.all(10)),
+                                    child: const Text('Reset'),
+                                  ),
+                                )
+                              ],
+                            ),
+                          ),
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.symmetric(vertical: 16),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Expanded(
+                                child: NumberTextField(
+                                  labelString: enteredPrice,
+                                  controller: entryController,
+                                  onChanged: (value) {},
+                                  readOnly: false,
+                                  isDecimal: true,
+                                  isZeroToOne: false,
+                                ),
+                              ),
+                              const SizedBox(
+                                width: 16,
+                              ),
+                              Expanded(
+                                child: NumberTextField(
+                                  labelString: slPoints,
+                                  controller: slPointsController,
+                                  onChanged: (value) {},
+                                  readOnly: false,
+                                  isDecimal: true,
+                                  isZeroToOne: false,
+                                ),
+                              )
+                            ],
+                          ),
+                        ),
+                        const Text(
+                          rr,
+                          style: TextStyle(fontWeight: FontWeight.w500),
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.all(16.0),
+                          child: HorizontalOptions(
+                            onTap: (rrType) {
+                              presenter.rrToggleSelection(rrType);
+                            },
+                          ),
+                        ),
+                        if (_enableCustom)
+                          NumberTextField(
+                            labelString: enteredReward,
+                            controller: customController,
+                            onChanged: (value) {},
+                            readOnly: false,
+                            isDecimal: true,
+                            isZeroToOne: false,
+                          ),
+                        Padding(
+                          padding: const EdgeInsets.all(16.0),
+                          child: Row(
+                            children: [
+                              Expanded(
+                                child: ElevatedButton(
+                                  onPressed: () {
+                                    FocusManager.instance.primaryFocus?.unfocus();
+                                    if (_formKey.currentState!.validate()) {
+                                      presenter.calculate(
+                                          entryController.text,
+                                          slPointsController.text,
+                                          rrType,
+                                          customController.text);
+                                    } else {
+                                      presenter.error(fieldsMissingError);
+                                    }
+                                  },
+                                  child: Text('Calculate'),
+                                  style: ButtonStyle(
+                                      backgroundColor:
+                                      MaterialStateProperty.all<Color>(
+                                          const Color(0xff0642a2)),
+                                      shape: MaterialStateProperty.all(
+                                        RoundedRectangleBorder(
+                                          // Change your radius here
+                                          borderRadius: BorderRadius.circular(16),
+                                        ),
+                                      ),
+                                      elevation: MaterialStateProperty.all(10)),
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.symmetric(vertical: 16),
+                          child: Container(
+                            width: double.infinity,
+                            height: 1, // 1dp height
+                            color: const Color(0xff0642a2), // Line color
+                          ),
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.symmetric(vertical: 16),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Expanded(
+                                child: NumberTextField(
+                                  labelString: stopLoss,
+                                  controller: stopLossController,
+                                  onChanged: (value) {},
+                                  readOnly: true,
+                                  isDecimal: false,
+                                  isZeroToOne: false,
+                                ),
+                              ),
+                              const SizedBox(
+                                width: 16,
+                              ),
+                              Expanded(
+                                child: NumberTextField(
+                                  labelString: targetPrice,
+                                  controller: targetPriceController,
+                                  onChanged: (value) {},
+                                  readOnly: true,
+                                  isDecimal: true,
+                                  isZeroToOne: false,
+                                ),
+                              )
+                            ],
+                          ),
+                        )
+                      ],
+                    ),
+                  ),
                 ),
               ),
             ),

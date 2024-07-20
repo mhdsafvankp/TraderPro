@@ -24,7 +24,21 @@ class _MyAppState extends State<MyApp> {
     return MaterialApp(
       title: 'Trader Pro',
       theme: ThemeData(
-        primarySwatch: Colors.blue,
+        primarySwatch: MaterialColor(
+          0xff0642a2,
+          <int, Color>{
+            50: Color(0x1a0642a2),
+            100: Color(0x330642a2),
+            200: Color(0x4d0642a2),
+            300: Color(0x660642a2),
+            400: Color(0x800642a2),
+            500: Color(0x990642a2),
+            600: Color(0xb30642a2),
+            700: Color(0xcc0642a2),
+            800: Color(0xe60642a2),
+            900: Color(0xff0642a2),
+          },
+        ),
       ),
       home: Scaffold(
         appBar: AppBar(title: const Text(traderProHome)),
@@ -42,7 +56,7 @@ class _MyAppState extends State<MyApp> {
           ],
         ),
         bottomNavigationBar: BottomNavigationBar(
-          backgroundColor: Colors.blue,
+          backgroundColor: const Color(0xff0642a2),
           currentIndex: _selectedIndex,
           selectedItemColor: Colors.white,
           unselectedItemColor: Colors.black,

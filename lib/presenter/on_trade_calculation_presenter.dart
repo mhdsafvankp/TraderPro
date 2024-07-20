@@ -31,7 +31,6 @@ class OnTradeCalculationPresenter implements PreTradeCalPresenterContracts {
 
   @override
   void calculate(String price, String sl, RR rr, String custom) {
-    print('rr: ${rr}');
     if(price.isNotEmpty && sl.isNotEmpty){
       switch (rr){
         case RR.one:
@@ -55,7 +54,6 @@ class OnTradeCalculationPresenter implements PreTradeCalPresenterContracts {
         case RR.other:
           double slPoint = _calculateSl(sl, price);
           double reward = double.parse(custom);
-          print('slPoint: $slPoint, reward: $reward');
           double targetPoint = _calculateTarget(sl, price, reward);
           model.sl = slPoint;
           model.target = targetPoint;
