@@ -1,9 +1,16 @@
+import 'package:firebase_analytics/firebase_analytics.dart';
+import 'package:firebase_core/firebase_core.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:trader_pro/firebase_options.dart';
+import 'package:trader_pro/utilities/analytics.dart';
 import 'package:trader_pro/utilities/contants.dart';
 import 'package:trader_pro/view/screens/pre_trade_screen.dart';
 import 'package:trader_pro/view/screens/on_trade_screen.dart';
 
-void main() {
+void main() async{
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
   runApp(const MyApp());
 }
 
@@ -18,6 +25,13 @@ class _MyAppState extends State<MyApp> {
 
   final PageController pageController = PageController(initialPage: 0);
   int _selectedIndex = 0;
+
+
+  @override
+  void initState() {
+    Analytics.logEvent('main_loaded');
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {

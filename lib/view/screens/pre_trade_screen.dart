@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:trader_pro/model/calculation_model.dart';
 
 import '../../presenter/pre_trade_calculation_presenter.dart';
+import '../../utilities/analytics.dart';
 import '../../utilities/contants.dart';
 import '../../widgets/button.dart';
 import '../../widgets/input_field.dart';
@@ -32,7 +33,7 @@ class _MyHomePageState extends State<MyHomePage> implements PreTradeCalViewContr
   @override
   void initState() {
     super.initState();
-
+    Analytics.logEvent('${widget.title} loaded');
     // setting the presenter object
     presenter = PreTradeCalculationPresenter(calViewContract: this);
   }

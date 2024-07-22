@@ -3,6 +3,7 @@ import 'package:trader_pro/model/calculation_model.dart';
 import 'package:trader_pro/widgets/horizontal_list.dart';
 
 import '../../presenter/on_trade_calculation_presenter.dart';
+import '../../utilities/analytics.dart';
 import '../../utilities/contants.dart';
 import '../../widgets/button.dart';
 import '../../widgets/input_field.dart';
@@ -36,7 +37,7 @@ class _OnTradeScreenState extends State<OnTradeScreen>
   @override
   void initState() {
     super.initState();
-
+    Analytics.logEvent('${widget.title} loaded');
     presenter = OnTradeCalculationPresenter(calViewContract: this);
   }
 

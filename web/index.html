@@ -40,7 +40,14 @@
   <script src="flutter.js" defer></script>
 </head>
 <body>
-  <script>
+<script>
+    window.process = {
+      env: {
+        NODE_ENV: 'production'
+      }
+    };
+  </script>
+<script>
     window.addEventListener('load', function(ev) {
       // Download main.dart.js
       _flutter.loader.loadEntrypoint({
@@ -55,28 +62,28 @@
       });
     });
   </script>
-  <script type="module">
-  // Import the functions you need from the SDKs you need
-  import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.4/firebase-app.js";
-  import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.12.4/firebase-analytics.js";
-  // TODO: Add SDKs for Firebase products that you want to use
-  // https://firebase.google.com/docs/web/setup#available-libraries
+<script type="module">
+    // Import the functions you need from the SDKs you need
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.4/firebase-app.js";
+    import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.12.4/firebase-analytics.js";
+    // TODO: Add SDKs for Firebase products that you want to use
+    // https://firebase.google.com/docs/web/setup#available-libraries
 
-  // Your web app's Firebase configuration
-  // For Firebase JS SDK v7.20.0 and later, measurementId is optional
-  const firebaseConfig = {
-    apiKey: "AIzaSyB7S7Ci4ITtA96GHI4DgpFlPHh-hiW0ng0",
-    authDomain: "traderpro-e1e4a.firebaseapp.com",
-    projectId: "traderpro-e1e4a",
-    storageBucket: "traderpro-e1e4a.appspot.com",
-    messagingSenderId: "321550719935",
-    appId: "1:321550719935:web:fe9d1ad0ead67db01f5f0a",
-    measurementId: "G-YENMX4E37E"
-  };
+    // Your web app's Firebase configuration
+    // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+    const firebaseConfig = {
+      apiKey: "AIzaSyB7S7Ci4ITtA96GHI4DgpFlPHh-hiW0ng0",
+      authDomain: "traderpro-e1e4a.firebaseapp.com",
+      projectId: "traderpro-e1e4a",
+      storageBucket: "traderpro-e1e4a.appspot.com",
+      messagingSenderId: "321550719935",
+      appId: "1:321550719935:web:fe9d1ad0ead67db01f5f0a",
+      measurementId: "G-YENMX4E37E"
+    };
 
-  // Initialize Firebase
-  const app = initializeApp(firebaseConfig);
-  const analytics = getAnalytics(app);
-</script>
+    // Initialize Firebase
+    const app = initializeApp(firebaseConfig);
+    const analytics = getAnalytics(app);
+  </script>
 </body>
 </html>

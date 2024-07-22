@@ -1,6 +1,8 @@
 
 import 'package:flutter/material.dart';
 
+import '../utilities/analytics.dart';
+
 
 class MyButton extends StatelessWidget {
   const MyButton({super.key, required this.onPressed, required this.title});
@@ -12,7 +14,10 @@ class MyButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ElevatedButton(
-      onPressed: onPressed,
+      onPressed: (){
+        onPressed();
+        Analytics.logEvent('${title.toLowerCase()}_pressed');
+      },
       style: ButtonStyle(
           backgroundColor:
           MaterialStateProperty.all<Color>(
